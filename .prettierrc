@@ -1,0 +1,9 @@
+{
+	"arrowParens": "avoid",
+	"htmlWhitespaceSensitivity": "ignore",
+	"plugins": ["prettier-plugin-organize-imports"],
+	"printWidth": 120,
+	"singleQuote": true,
+	"tabWidth": 2,
+	"useTabs": true
+}
