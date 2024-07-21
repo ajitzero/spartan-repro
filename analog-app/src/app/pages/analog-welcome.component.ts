@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'analog-app-analog-welcome',
 	standalone: true,
+	imports: [RouterLink],
 	host: {
 		class: 'flex min-h-screen flex-col text-zinc-900 bg-zinc-50 px-4 pt-8 pb-32',
 	},
@@ -19,16 +21,22 @@ import { Component } from '@angular/core';
 						class="inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-input hover:bg-zinc-100 hover:text-zinc-950 h-11 px-8 rounded-md"
 					>
 						Count:
-						<span class="ml-1 font-mono">{{ count }}</span>
+						<span class="ml-1 font-mono">{{ count() }}</span>
 					</button>
+					<a
+						[routerLink]="['/subscribe']"
+						class="inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background border border-input hover:bg-zinc-100 hover:text-zinc-950 h-11 px-8 rounded-md"
+					>
+						Subscribe Now
+					</a>
 				</div>
 			</section>
 		</main>
 	`,
 })
 export class AnalogWelcomeComponent {
-	public count = 0;
+	public count = signal(0);
 	public increment() {
-		this.count++;
+		this.count.set(this.count() + 1);
 	}
 }
